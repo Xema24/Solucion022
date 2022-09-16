@@ -1,0 +1,102 @@
+﻿@model Principal.ViewModels.EmployeesOrdersViewModel
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Employees</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.LastName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LastName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FirstName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FirstName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.birthDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.birthDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Photo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Photo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Notes)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Notes)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.EmployeeID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
+
+
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Orders.FirstOrDefault().OrderDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Orders.FirstOrDefault().Customers.CustomerName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Orders.FirstOrDefault().Employees.LastName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Orders.FirstOrDefault().shippers.shipperName)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model.Orders)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.OrderDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Customers.CustomerName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Employees.LastName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.shippers.shipperName)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.OrderID }) |
+                @Html.ActionLink("Details", "Details", new { id = item.OrderID }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.OrderID })
+            </td>
+        </tr>
+    }
+
+</table>
